@@ -1,5 +1,6 @@
 ##UEFI (64-bit only)
 #prebootloader
+efitools
 refind-efi
 
 ##packages for installer
