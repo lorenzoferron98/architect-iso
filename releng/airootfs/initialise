@@ -63,9 +63,10 @@ download_aif() {
 
   # Provided there is a connection, then this menu will be available.
   dialog --backtitle "$VERSION" --title " Installer Version " \
-  --menu $"\nPlease choose / Gelieve te kiezen / Bitte wählen / Scegli / Vennligst velg / Por favor elija\n\n1. Stable / stabiel / stabil / stabile / stabilny / estable\n\n2. Development / ontwikkeling / Entwicklung / sviluppo / utvikling / rozwój / desarrollo\n" 20 50 2 \
+  --menu $"\nPlease choose / Gelieve te kiezen / Bitte wählen / Scegli / Vennligst velg / Por favor elija\n\n1. Stable / stabiel / stabil / stabile / stabilny / estable\n\n2. Development / ontwikkeling / Entwicklung / sviluppo / utvikling / rozwój / desarrollo\n" 20 50 3 \
   "1" $"Stable" \
-  "2" $"Development" 2>${OPT}
+  "2" $"Development" \
+  "3" $"Development LLDE" 2>${OPT} 
   
   case $(cat ${OPT}) in
        "1") # Stable (Net)
@@ -77,6 +78,12 @@ download_aif() {
        "2") # Development Version
             clear
             wget -N https://github.com/CarlDuff/aif-dev/archive/master.zip
+            unzip -o master.zip -d /
+            /aif-dev-master/aif
+            ;;
+       "3") # Development LLDE Version
+            clear
+            wget -N https://github.com/llde/aif-dev/archive/master.zip
             unzip -o master.zip -d /
             /aif-dev-master/aif
             ;;
