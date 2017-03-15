@@ -67,23 +67,49 @@ download_aif() {
   "1" $"Stable" \
   "2" $"Development" 2>${OPT} 
   
+  DOWNLOAD=""
+  FOLDER=""
   case $(cat ${OPT}) in
        "1") # Stable (Net)
+            DOWNLOAD=https://github.com/llde/aif/archive/master.zip
+            FOLDER=/aif-master/aif
             clear
-            wget -N https://github.com/llde/aif/archive/master.zip
-            unzip -o master.zip -d /
-            /aif-master/aif
+#            wget -N https://github.com/llde/aif/archive/master.zip
+ #           unzip -o master.zip -d /
+#            /aif-master/aif
             ;;
        "2") # Development Version
-            clear
-            wget -N https://github.com/llde/aif-dev/archive/master.zip
-            unzip -o master.zip -d /
-            /aif-dev-master/aif
+            DOWNLOAD=https://github.com/llde/aif-dev/archive/master.zip
+            FOLDER=/aif-dev-master/aif
+ #           clear
+  #          wget -N https://github.com/llde/aif-dev/archive/master.zip
+   #         unzip -o master.zip -d /
+#            /aif-dev-master/aif
             ;;
          *) break;
             ;;
   esac
 
+  clear
+  if wget -N ${DOWNLOAD}; then
+    unzip -o master.zip -d /
+    ${FOLDER}
+  else
+    dialog --backtitle "$VERSION" --title "ERROR DOWNLOADING INSTALLER." --menu "Maybe the net requires login." 20 50 1 "1" "Try login with Lynx" 2>{OPT}
+    
+    case $(cat ${OPT}) in
+        "1") 
+            clear
+            lynx
+            ;;
+        "*") break;
+           ;;
+    esac
+    
+    wget -N $DOWNLOAD
+    unzip -o master.zip -d /
+    $FOLDER
+  fi
 }
 
 # When complete (Whether successfully or unsuccessfully)
