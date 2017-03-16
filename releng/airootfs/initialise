@@ -73,18 +73,10 @@ download_aif() {
        "1") # Stable (Net)
             DOWNLOAD=https://github.com/llde/aif/archive/master.zip
             FOLDER=/aif-master/aif
-            clear
-#            wget -N https://github.com/llde/aif/archive/master.zip
- #           unzip -o master.zip -d /
-#            /aif-master/aif
             ;;
        "2") # Development Version
             DOWNLOAD=https://github.com/llde/aif-dev/archive/master.zip
             FOLDER=/aif-dev-master/aif
- #           clear
-  #          wget -N https://github.com/llde/aif-dev/archive/master.zip
-   #         unzip -o master.zip -d /
-#            /aif-dev-master/aif
             ;;
          *) break;
             ;;
@@ -95,7 +87,7 @@ download_aif() {
     unzip -o master.zip -d /
     ${FOLDER}
   else
-    dialog --backtitle "$VERSION" --title "ERROR DOWNLOADING INSTALLER." --menu "Maybe the net requires login." 20 50 1 "1" "Try login with Lynx" 2>{OPT}
+    dialog --backtitle "$VERSION" --title "ERROR DOWNLOADING INSTALLER." --menu "Maybe the net requires login." 20 50 1 "1" "Try login with Lynx" 2>${OPT}
     
     case $(cat ${OPT}) in
         "1") 
