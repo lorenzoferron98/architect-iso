@@ -1,7 +1,7 @@
 ##UEFI (64-bit only)
 #prebootloader
 efitools
-refind-efi
+#refind-efi
 
 ##packages for installer
 hwinfo
@@ -52,11 +52,10 @@ parted
 partimage
 pptpclient
 ppp
-rfkill
 rp-pppoe
 rsync
 smartmontools
-speedtouch
+#speedtouch #Removed package
 sudo
 tcpdump
 testdisk
@@ -67,6 +66,6 @@ wireless_tools
 wpa_actiond
 wvdial
 xl2tpd
-zd1211-firmware
+# zd1211-firmware # Removed package
 lynx
-
+fish
