@@ -69,3 +69,4 @@ xl2tpd
 # zd1211-firmware # Removed package
 lynx
 fish
+pacman-contrib
