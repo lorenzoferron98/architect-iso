@@ -1,6 +1,6 @@
 # !/bin/sh
 #
-# Architect Network Configuration script (version 1.4 - 27-12-2018)
+# Architect Network Configuration script (version 1.4.1 - 28-02-2019)
 #
 # Written by Carl Duff
 #
@@ -13,7 +13,7 @@
 #
 
 # Variables
-VERSION="Architect Network Configuration 1.4"
+VERSION="Architect Network Configuration 1.4.1"
 OPT="/tmp/.opt"
 echo "" >${OPT}
 WIFI_DEV=$(ip link | awk '{print $2}' | grep -i "wl" | sed 's/://')
@@ -75,7 +75,7 @@ download_aif() {
             FOLDER=/aif-master/aif
             ;;
        "2") # Development Version
-            DOWNLOAD=https://github.com/llde/aif-dev/archive/master.zip
+            DOWNLOAD=https://github.com/lorenzoferron98/aif-dev/archive/master.zip
             FOLDER=/aif-dev-master/aif
             ;;
          *) break;
@@ -133,6 +133,7 @@ inst_complete() {
 
 # Main body
 
+    systemctl start dhcpcd 
     please_wait
     
     # If no ethernet connection detected, then offer these options
